@@ -45,7 +45,7 @@ pub struct ClaimRecord {
     pub ticket_id: String,
     /// Billing period, `YYYY-MM`.
     pub period: String,
-    /// `confirmed` or `assumed`, as the vendor classified it.
+    /// `confirmed` or `assumed`, as the vendor classified it. Other vendors use other categories.
     pub resolution_type: String,
     /// When the vendor says it was resolved, RFC 3339.
     pub resolved_at: String,
@@ -131,8 +131,8 @@ pub struct Summary {
     pub billed: u64,
     /// Claims that failed no criterion locally.
     ///
-    /// Serialised as `unflagged`: these claims were not checked by anything, they merely did not
-    /// trip a rule. Calling them "verified" in a machine-readable file that also carries
+    /// Serialised as `unflagged`: these claims were checked locally against the ruleset and did
+    /// not trip a rule, but were not adjudicated. Calling them "verified" in a machine-readable file that also carries
     /// `judge_key_hex: null` invites exactly the reading it should not.
     #[serde(rename = "unflagged")]
     pub verified: u64,
