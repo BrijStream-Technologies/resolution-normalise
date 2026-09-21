@@ -1,8 +1,8 @@
 [package]
 name = "resolution-normalise"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
-description = "Derives billed-resolution claim records from vendor-neutral helpdesk records, so the party being billed can reproduce the measurement."
+description = "Derives billed-resolution claim records from vendor-neutral helpdesk records, so the party being measured can reproduce the measurement."
 repository = "https://github.com/BrijStream-Technologies/resolution-normalise"
 # Published for reproducibility: a vendor must be able to run this against their own export.
 # A licence that does not permit that would defeat the purpose of publishing it.
