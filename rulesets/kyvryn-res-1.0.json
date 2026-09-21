@@ -1,0 +1,17 @@
+{
+  "version": "kyvryn-res-1.0",
+  "reopen_window_days": 7,
+  "repeat_contact_window_days": 7,
+  "downstream_window_days": 14,
+  "require_intent_match": true,
+  "intent_tag_prefix": "intent_",
+  "scope_tag_pattern": "^intent_[a-z0-9_]+$",
+  "staff_domains": [],
+  "test_account_markers": [
+    "+test@",
+    "qa-"
+  ],
+  "bot_user_ids": [],
+  "min_turns": 2,
+  "max_turns": 200
+}

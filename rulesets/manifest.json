@@ -1,0 +1,12 @@
+{
+  "note": "Kyvryn's standard rulesets. The digest is of the ruleset's canonical serialisation, NOT of the file's bytes: sha256sum on the file gives a different value. Recompute with `cargo run --example ruleset_digest -- <file>`.",
+  "rulesets": [
+    {
+      "version": "kyvryn-res-1.0",
+      "file": "kyvryn-res-1.0.json",
+      "digest": "83fd376e34bcc1b7bbbcfef9a2a6bc6bfe033cea0ab7a7fdb8c64100182edf0c",
+      "published": "2026-09-19",
+      "status": "current"
+    }
+  ]
+}

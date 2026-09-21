@@ -1,0 +1,22 @@
+[package]
+name = "resolution-normalise"
+version = "0.1.2"
+edition = "2021"
+description = "Derives billed-resolution claim records from vendor-neutral helpdesk records, so the party being billed can reproduce the measurement."
+repository = "https://github.com/BrijStream-Technologies/resolution-normalise"
+# Published for reproducibility: a vendor must be able to run this against their own export.
+# A licence that does not permit that would defeat the purpose of publishing it.
+license = "Apache-2.0"
+
+[dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+hex = "0.4"
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+sha2 = "0.10"
+thiserror = "1"
+
+[lib]
+name = "resolution_normalise"
+path = "src/lib.rs"

@@ -1,0 +1,18 @@
+{
+  "version": "kyvryn-res-1.0-fixture",
+  "reopen_window_days": 7,
+  "repeat_contact_window_days": 7,
+  "downstream_window_days": 14,
+  "require_intent_match": true,
+  "intent_tag_prefix": "intent_",
+  "scope_tag_pattern": "^intent_[a-z0-9_]+$",
+  "staff_domains": [
+    "acme-support.example"
+  ],
+  "test_account_markers": [
+    "+test@",
+    "qa-"
+  ],
+  "min_turns": 2,
+  "max_turns": 200
+}

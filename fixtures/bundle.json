@@ -1,0 +1,422 @@
+{
+  "tickets": [
+    {
+      "id": "1001",
+      "requester_id": "9001",
+      "created_at": "2026-08-01T12:00:00Z",
+      "tags": [
+        "intent_billing_refund",
+        "channel_web"
+      ]
+    },
+    {
+      "id": "1002",
+      "requester_id": "9002",
+      "created_at": "2026-08-02T12:00:00Z",
+      "tags": [
+        "intent_password_reset"
+      ]
+    },
+    {
+      "id": "1003",
+      "requester_id": "9003",
+      "created_at": "2026-08-03T12:00:00Z",
+      "tags": [
+        "intent_order_status"
+      ]
+    },
+    {
+      "id": "1004",
+      "requester_id": "9003",
+      "created_at": "2026-08-07T12:00:00Z",
+      "tags": [
+        "intent_order_status"
+      ]
+    },
+    {
+      "id": "1005",
+      "requester_id": "9004",
+      "created_at": "2026-08-04T12:00:00Z",
+      "tags": [
+        "intent_subscription_cancel"
+      ]
+    },
+    {
+      "id": "1006",
+      "requester_id": "9005",
+      "created_at": "2026-08-05T12:00:00Z",
+      "tags": [
+        "intent_password_reset"
+      ]
+    },
+    {
+      "id": "1007",
+      "requester_id": "9006",
+      "created_at": "2026-08-06T12:00:00Z",
+      "tags": [
+        "intent_billing_refund"
+      ]
+    },
+    {
+      "id": "1008",
+      "requester_id": "9007",
+      "created_at": "2026-08-08T12:00:00Z",
+      "tags": []
+    }
+  ],
+  "events": [
+    {
+      "ticket_id": "1001",
+      "at": "2026-08-01T12:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "9001"
+        }
+      }
+    },
+    {
+      "ticket_id": "1001",
+      "at": "2026-08-01T13:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "5"
+        }
+      }
+    },
+    {
+      "ticket_id": "1001",
+      "at": "2026-08-01T14:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "solved"
+        }
+      }
+    },
+    {
+      "ticket_id": "1002",
+      "at": "2026-08-02T12:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "9002"
+        }
+      }
+    },
+    {
+      "ticket_id": "1002",
+      "at": "2026-08-02T13:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "5"
+        }
+      }
+    },
+    {
+      "ticket_id": "1002",
+      "at": "2026-08-02T14:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "solved"
+        }
+      }
+    },
+    {
+      "ticket_id": "1003",
+      "at": "2026-08-03T12:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "9003"
+        }
+      }
+    },
+    {
+      "ticket_id": "1003",
+      "at": "2026-08-03T13:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "5"
+        }
+      }
+    },
+    {
+      "ticket_id": "1003",
+      "at": "2026-08-03T14:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "solved"
+        }
+      }
+    },
+    {
+      "ticket_id": "1005",
+      "at": "2026-08-04T12:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "9004"
+        }
+      }
+    },
+    {
+      "ticket_id": "1005",
+      "at": "2026-08-04T13:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "5"
+        }
+      }
+    },
+    {
+      "ticket_id": "1005",
+      "at": "2026-08-04T14:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "solved"
+        }
+      }
+    },
+    {
+      "ticket_id": "1002",
+      "at": "2026-08-05T09:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "open"
+        }
+      }
+    },
+    {
+      "ticket_id": "1006",
+      "at": "2026-08-05T12:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "9005"
+        }
+      }
+    },
+    {
+      "ticket_id": "1006",
+      "at": "2026-08-05T13:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "5"
+        }
+      }
+    },
+    {
+      "ticket_id": "1006",
+      "at": "2026-08-05T14:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "solved"
+        }
+      }
+    },
+    {
+      "ticket_id": "1007",
+      "at": "2026-08-06T12:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "9006"
+        }
+      }
+    },
+    {
+      "ticket_id": "1007",
+      "at": "2026-08-06T13:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "5"
+        }
+      }
+    },
+    {
+      "ticket_id": "1007",
+      "at": "2026-08-06T14:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "solved"
+        }
+      }
+    },
+    {
+      "ticket_id": "1005",
+      "at": "2026-08-07T11:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "7"
+        }
+      }
+    },
+    {
+      "ticket_id": "1004",
+      "at": "2026-08-07T12:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "9003"
+        }
+      }
+    },
+    {
+      "ticket_id": "1004",
+      "at": "2026-08-07T13:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "5"
+        }
+      }
+    },
+    {
+      "ticket_id": "1004",
+      "at": "2026-08-07T14:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "solved"
+        }
+      }
+    },
+    {
+      "ticket_id": "1008",
+      "at": "2026-08-08T13:00:00Z",
+      "kind": {
+        "public_comment": {
+          "author_id": "5"
+        }
+      }
+    },
+    {
+      "ticket_id": "1008",
+      "at": "2026-08-08T14:00:00Z",
+      "kind": {
+        "status_changed": {
+          "to": "solved"
+        }
+      }
+    },
+    {
+      "ticket_id": "1005",
+      "at": "2026-08-20T10:00:00Z",
+      "kind": {
+        "assignee_changed": {
+          "to_user_id": "7"
+        }
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": "9001",
+      "role": "end-user",
+      "email": "ada@example.com"
+    },
+    {
+      "id": "9002",
+      "role": "end-user",
+      "email": "bo@example.com"
+    },
+    {
+      "id": "9003",
+      "role": "end-user",
+      "email": "cy@example.com"
+    },
+    {
+      "id": "9004",
+      "role": "end-user",
+      "email": "di@example.com"
+    },
+    {
+      "id": "9005",
+      "role": "end-user",
+      "email": "eli@example.com"
+    },
+    {
+      "id": "9006",
+      "role": "end-user",
+      "email": "frank@acme-support.example"
+    },
+    {
+      "id": "9007",
+      "role": "end-user",
+      "email": "gus@example.com"
+    },
+    {
+      "id": "5",
+      "role": "end-user",
+      "email": "bot@vendor-ai.example"
+    },
+    {
+      "id": "7",
+      "role": "agent",
+      "email": "human@acme-support.example"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C-100",
+      "ticket_id": "1001",
+      "resolution_type": "confirmed",
+      "resolved_at": "2026-08-01T14:00:00Z",
+      "amount_usd_micros": 990000
+    },
+    {
+      "claim_id": "C-101",
+      "ticket_id": "1002",
+      "resolution_type": "assumed",
+      "resolved_at": "2026-08-02T14:00:00Z",
+      "amount_usd_micros": 990000
+    },
+    {
+      "claim_id": "C-102",
+      "ticket_id": "1003",
+      "resolution_type": "assumed",
+      "resolved_at": "2026-08-03T14:00:00Z",
+      "amount_usd_micros": 990000
+    },
+    {
+      "claim_id": "C-103",
+      "ticket_id": "1005",
+      "resolution_type": "assumed",
+      "resolved_at": "2026-08-04T14:00:00Z",
+      "amount_usd_micros": 990000
+    },
+    {
+      "claim_id": "C-104",
+      "ticket_id": "1006",
+      "resolution_type": "assumed",
+      "resolved_at": "2026-08-05T14:00:00Z",
+      "amount_usd_micros": 990000
+    },
+    {
+      "claim_id": "C-105",
+      "ticket_id": "1007",
+      "resolution_type": "assumed",
+      "resolved_at": "2026-08-06T14:00:00Z",
+      "amount_usd_micros": 990000
+    },
+    {
+      "claim_id": "C-106",
+      "ticket_id": "1008",
+      "resolution_type": "assumed",
+      "resolved_at": "2026-08-08T14:00:00Z",
+      "amount_usd_micros": 990000
+    },
+    {
+      "claim_id": "C-107",
+      "ticket_id": "4242",
+      "resolution_type": "assumed",
+      "resolved_at": "2026-08-09T14:00:00Z",
+      "amount_usd_micros": 990000
+    },
+    {
+      "claim_id": "C-108",
+      "ticket_id": "1004",
+      "resolution_type": "assumed",
+      "resolved_at": "2026-08-07T14:00:00Z",
+      "amount_usd_micros": 990000
+    }
+  ],
+  "downstream": [
+    {
+      "requester_id": "9005",
+      "at": "2026-08-09T10:00:00Z",
+      "kind": "refund"
+    }
+  ]
+}
