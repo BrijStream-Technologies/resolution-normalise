@@ -81,7 +81,13 @@ pub enum Error {
     /// A ruleset was not usable.
     #[error("invalid ruleset: {0}")]
     Ruleset(String),
+    /// Inputs that are individually valid but cannot be used together.
+    #[error("inputs do not fit together: {0}")]
+    Conflict(String),
 }
+
+/// This crate's version, so a document produced with it can name the derivation that made it.
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Crate result alias.
 pub type Result<T> = std::result::Result<T, Error>;
