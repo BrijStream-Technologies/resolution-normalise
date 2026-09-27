@@ -44,8 +44,9 @@ pub use model::{ClaimRecord, Outcome, RequesterClass};
 pub use ruleset::Ruleset;
 pub use source::SourceBundle;
 
-/// Errors surfaced by this crate.
+/// Errors surfaced by this crate. Non-exhaustive, so a new kind of error is not a breaking change.
 #[derive(Debug, thiserror::Error)]
+#[non_exhaustive]
 pub enum Error {
     /// A required configuration value was absent. Configuration is fail-closed: there are no
     /// defaults for credentials or endpoints.
@@ -88,6 +89,13 @@ pub enum Error {
 
 /// This crate's version, so a document produced with it can name the derivation that made it.
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+
+/// The text without a leading UTF-8 byte-order mark. Windows PowerShell 5.1 writes one by default,
+/// and a JSON parser rejects it, so a file saved there would otherwise not load.
+#[must_use]
+pub fn without_bom(text: &str) -> &str {
+    text.strip_prefix('\u{feff}').unwrap_or(text)
+}
 
 /// Crate result alias.
 pub type Result<T> = std::result::Result<T, Error>;

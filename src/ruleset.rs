@@ -73,7 +73,7 @@ impl Ruleset {
             path: path.to_owned(),
             source,
         })?;
-        let parsed: Self = serde_json::from_str(&text).map_err(|source| Error::Parse {
+        let parsed: Self = serde_json::from_str(crate::without_bom(&text)).map_err(|source| Error::Parse {
             what: format!("ruleset {path}"),
             source,
         })?;

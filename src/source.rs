@@ -133,7 +133,7 @@ impl SourceBundle {
             path: path.to_owned(),
             source,
         })?;
-        serde_json::from_str(&text).map_err(|source| Error::Parse {
+        serde_json::from_str(crate::without_bom(&text)).map_err(|source| Error::Parse {
             what: path.to_owned(),
             source,
         })
