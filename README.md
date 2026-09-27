@@ -78,9 +78,10 @@ counting has to happen here, in the open, where it can be re-run.
 ## What is deliberately not here
 
 Connectors that fetch records from Zendesk, Intercom or Salesforce, and the tooling that submits
-claims and builds evidence packs. None of that is needed to reproduce a result. A bundle is a JSON
-file, and whoever ran the original derivation can export it; the connectors only decide how that
-file gets filled.
+claims and builds evidence packs. None of that is needed to reproduce a result *from a bundle*: a
+bundle is a JSON file, and whoever ran the original derivation can export it. What the connectors
+put into that bundle is not something this crate can check — see "Licence and scope" — so check the
+bundle against your own records as well as re-running the derivation over it.
 
 ## Determinism
 

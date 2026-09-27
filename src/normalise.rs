@@ -335,7 +335,14 @@ pub fn failed_reasons(record: &ClaimRecord, min: u64, max: u64, scope_ok: bool) 
     if record.downstream_reversal {
         reasons.insert("downstream_reversal".to_owned());
     }
-    if record.requester_class != RequesterClass::Customer.as_str() {
+    // Two different findings, so two different names. "Not a customer" says the buyer's own
+    // directory classifies the requester as staff, a test account or a bot. An absent requester says
+    // only that the users export supplied does not cover them, which an incomplete export produces
+    // just as readily -- and a dispute line that asserts the first when the vendor can produce the
+    // customer takes the credibility of every other row with it.
+    if record.requester_class == RequesterClass::Unknown.as_str() {
+        reasons.insert("requester_not_in_export".to_owned());
+    } else if record.requester_class != RequesterClass::Customer.as_str() {
         reasons.insert("requester_not_customer".to_owned());
     }
     if record.turn_count < min || record.turn_count > max {
