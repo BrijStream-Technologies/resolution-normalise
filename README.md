@@ -94,8 +94,10 @@ This crate is Apache-2.0. It is the derivation only. The `attest` command-line t
 the helpdesk connectors, the submission client and the evidence-pack renderer — is proprietary and
 distributed as binaries at
 [attest-cli](https://github.com/BrijStream-Technologies/attest-cli), under its own licence. None of
-that is needed to reproduce a result: a source bundle is a JSON file, and everything the
-measurement depends on happens here, in the open.
+that is needed to reproduce a result from a bundle: a source bundle is a JSON file, and every step
+from that bundle to a claim record happens here, in the open. What the closed connectors request of
+a helpdesk when they build a bundle is not something this crate can prove; that part rests on the
+operator's account of it, and on the bundle you can check against your own records.
 
 Zendesk, Intercom, Fin, Salesforce and Agentforce are trademarks of their respective owners. Kyvryn
 and BrijStream Technologies are not affiliated with, endorsed by, or sponsored by any of them.
