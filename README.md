@@ -13,7 +13,8 @@ If the digests do not reproduce from the bundle, ruleset and `evaluated_at` supp
 
 ## Reproducing a run
 
-You need two files from whoever made the claim, and nothing else:
+You need two files from whoever made the claim, plus two values they must tell you — the period
+label they used, and the `evaluated_at` they ran at, which no artifact records:
 
 | File | What it is |
 |---|---|
@@ -45,7 +46,7 @@ produces the same records.
 ## Rulesets
 
 `rulesets/` holds Kyvryn's standard rulesets, and `rulesets/manifest.json` maps each version to
-its digest. A claim record names the rules it was judged under in `ruleset_sha256`; look that
+its digest. A claim record names the rules it was evaluated under in `ruleset_sha256`; look that
 digest up in the manifest to see which document it was.
 
 **A hash of the file is not that digest.** `ruleset_sha256` is taken over the ruleset's canonical

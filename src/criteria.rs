@@ -10,7 +10,11 @@ use serde_json::{json, Value};
 use crate::model::{ClaimRecord, RequesterClass};
 use crate::ruleset::Ruleset;
 
-/// The criteria a claim record must satisfy to be payable.
+/// The criteria a claim record must satisfy to go unflagged.
+///
+/// Not "to be payable": whether a charge is owed is a question about a contract, and this crate
+/// answers only whether a record satisfies criteria fixed in advance. The mirror of "flagged is not
+/// a finding that a charge was improper" is that unflagged is not a finding that one is payable.
 ///
 /// Fixed before evaluation and reproduced inside the attestation the Judge returns, so either party
 /// can read exactly what was checked.

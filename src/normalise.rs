@@ -17,7 +17,7 @@ use crate::{sha256_hex, Error, Result};
 /// Normalise one period's records into claim records.
 ///
 /// `evaluated_at` is when the attestation is being run: claims whose windows have not yet
-/// closed are deferred rather than judged early.
+/// closed are deferred rather than evaluated early.
 ///
 /// # Errors
 /// Returns [`Error::Ruleset`] if the ruleset is unusable, and [`Error::Parse`] if a source record

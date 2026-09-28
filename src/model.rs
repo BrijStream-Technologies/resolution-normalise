@@ -99,14 +99,14 @@ impl ClaimRecord {
 pub enum Outcome {
     /// A claim record ready for adjudication.
     Claim(Box<ClaimRecord>),
-    /// The windows have not closed yet, so the claim cannot be judged without pre-judging it.
+    /// The windows have not closed yet, so the claim cannot be evaluated without pre-judging it.
     Deferred {
         /// The vendor's claim id.
         claim_id: String,
         /// The earliest time this claim can be adjudicated, RFC 3339.
         adjudicable_at: String,
         /// What the vendor billed for it. It counts toward neither the billed total nor the amount
-        /// at stake, because it has not been judged -- but a reader needs it to see how much of the
+        /// at stake, because nothing evaluated it -- but a reader needs it to see how much of the
         /// invoice this period's figures leave out. Defaults to zero when reading records written
         /// before this field existed.
         #[serde(default)]
@@ -152,7 +152,7 @@ pub struct Summary {
     pub verified: u64,
     /// Claims that failed at least one criterion.
     pub exceptions: u64,
-    /// Claims whose windows have not closed, and so were not judged.
+    /// Claims whose windows have not closed, and so nothing evaluated them.
     pub deferred: u64,
     /// What the vendor billed for those deferred claims, micros of USD.
     ///
