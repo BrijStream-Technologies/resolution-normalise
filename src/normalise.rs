@@ -70,6 +70,7 @@ pub fn normalise(
             outcomes.push(Outcome::Deferred {
                 claim_id: claim.claim_id.clone(),
                 adjudicable_at: adjudicable_at.to_rfc3339(),
+                amount_usd_micros: claim.amount_usd_micros,
             });
             continue;
         }
@@ -299,7 +300,13 @@ pub fn summarise(outcomes: &[Outcome], rules: &Ruleset) -> Summary {
                     }
                 }
             }
-            Outcome::Deferred { .. } => summary.deferred = summary.deferred.saturating_add(1),
+            Outcome::Deferred {
+                amount_usd_micros, ..
+            } => {
+                summary.deferred = summary.deferred.saturating_add(1);
+                summary.deferred_usd_micros =
+                    summary.deferred_usd_micros.saturating_add(*amount_usd_micros);
+            }
             Outcome::Unmatched {
                 amount_usd_micros, ..
             } => {

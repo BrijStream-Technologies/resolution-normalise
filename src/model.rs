@@ -105,6 +105,12 @@ pub enum Outcome {
         claim_id: String,
         /// The earliest time this claim can be adjudicated, RFC 3339.
         adjudicable_at: String,
+        /// What the vendor billed for it. It counts toward neither the billed total nor the amount
+        /// at stake, because it has not been judged -- but a reader needs it to see how much of the
+        /// invoice this period's figures leave out. Defaults to zero when reading records written
+        /// before this field existed.
+        #[serde(default)]
+        amount_usd_micros: u64,
     },
     /// The billed ticket id is not in the supplied helpdesk export. That is a strong exception if
     /// the export is complete for the period -- the vendor billed for a ticket the buyer has no
@@ -127,7 +133,15 @@ pub enum Outcome {
 /// Counts for the period, for the evidence pack's first page.
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Summary {
-    /// Claims the vendor billed.
+    /// Claims in scope: what the vendor billed for the period, less any claim whose windows had not
+    /// closed when the claims were derived.
+    ///
+    /// Includes unmatched claims, which are in scope but were evaluated against nothing -- subtract
+    /// `unmatched` for the count something actually tested.
+    ///
+    /// Add `deferred` for the vendor's own count. Under deferral this is a subset of the invoice,
+    /// and every rate and total in the same document is over it; `EvidencePack::deferred_note` says
+    /// so in words, in every format.
     pub billed: u64,
     /// Claims that failed no criterion locally.
     ///
@@ -138,11 +152,18 @@ pub struct Summary {
     pub verified: u64,
     /// Claims that failed at least one criterion.
     pub exceptions: u64,
-    /// Claims whose windows have not closed.
+    /// Claims whose windows have not closed, and so were not judged.
     pub deferred: u64,
+    /// What the vendor billed for those deferred claims, micros of USD.
+    ///
+    /// Carried so a consumer of the JSON can reach the invoice total -- `billed_usd_micros` plus
+    /// this -- without parsing the prose that states it.
+    #[serde(default)]
+    pub deferred_usd_micros: u64,
     /// Claims with no matching ticket.
     pub unmatched: u64,
-    /// Amount billed, micros of USD.
+    /// Amount billed for the claims in scope here, micros of USD. Add `deferred_usd_micros` for the
+    /// period's invoice.
     pub billed_usd_micros: u64,
     /// Amount attached to exceptions and unmatched claims, micros of USD.
     pub at_stake_usd_micros: u64,

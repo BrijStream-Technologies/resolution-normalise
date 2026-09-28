@@ -28,10 +28,17 @@ let rules = Ruleset::from_path("ruleset.json")?;
 let outcomes = normalise(&bundle, &rules, "2026-08", evaluated_at)?;
 ```
 
-`evaluated_at` decides only which claims are deferred: a claim whose windows had not closed by then
-is not judged. The claim records do not carry it. Any value after every window in the period has
-closed produces the same records, so to reproduce a closed period, pass a time after the period end
-plus the ruleset's longest window.
+`evaluated_at` decides only which claims are deferred: a claim is deferred when its `resolved_at`
+plus the ruleset's longest window falls after it. The claim records do not carry it, and neither
+does the evidence pack, so **ask the party that produced the records which value they used** — any
+other value can move a claim between deferred and in scope and produce different records.
+
+`period` is stamped onto each record and never filters them, so "the period end plus the longest
+window" is not an upper bound on any claim's window: a claim resolved on the last day of the period
+closes later than that. Where a pack records `deferred_until`, reproduce it with a time at or after
+the latest window that had already closed and before `deferred_until`. Where a pack records no
+`deferred_until`, nothing was deferred, and any time after every claim in the bundle has closed
+produces the same records.
 
 `cargo test` runs the reproduction suite against the fixtures in `fixtures/`.
 
