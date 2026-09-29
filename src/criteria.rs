@@ -3,7 +3,7 @@
 //! The Judge evaluates five criterion types: whole-artifact hash, field hash, pattern match,
 //! length bounds and exact equality. Everything below is exact equality over flags the normaliser
 //! derived, plus a bound on turn count and a pattern on the scope tag — so a verdict never rests
-//! on a judgment call.
+//! on an opinion.
 
 use serde_json::{json, Value};
 

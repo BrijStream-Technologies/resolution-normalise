@@ -5,8 +5,9 @@ Derives billed-resolution claim records from vendor-neutral helpdesk records.
 **This crate is published so that the party being measured can check the measurement.**
 
 If someone has disputed an invoice using a claim record produced by this code, you do not have to
-take their word for any of it. Take their source bundle and their ruleset, run this crate, and
-compare. The derivation is deterministic: same bundle plus same ruleset yields byte-identical
+take their word for any of it. Take their source bundle and their ruleset, ask them
+which period label and evaluation time they ran under, run this crate, and compare. The derivation
+is deterministic: the same bundle, ruleset, period label and evaluation time yield byte-identical
 records, including the `inputs_sha256` and `ruleset_sha256` digests each record carries.
 
 If the digests do not reproduce from the bundle, ruleset and `evaluated_at` supplied, the claim has not been substantiated as stated, and you can show exactly that.
@@ -19,7 +20,7 @@ label they used, and the `evaluated_at` they ran at, which no artifact records:
 | File | What it is |
 |---|---|
 | `bundle.json` | The source records the derivation read — tickets, events, users, the billed claims, and any downstream refunds or cancellations. It contains requester ids and email addresses, which are needed to classify staff and test accounts: treat it as personal data when you share it |
-| `ruleset.json` | The criteria those records were judged against, fixed before the run |
+| `ruleset.json` | The criteria those records were evaluated against, fixed before the run |
 
 ```rust
 use resolution_normalise::{normalise, Ruleset, SourceBundle};
@@ -36,8 +37,9 @@ other value can move a claim between deferred and in scope and produce different
 
 `period` is stamped onto each record and never filters them, so "the period end plus the longest
 window" is not an upper bound on any claim's window: a claim resolved on the last day of the period
-closes later than that. Where a pack records `deferred_until`, reproduce it with a time at or after
-the latest window that had already closed and before `deferred_until`. Where a pack records no
+closes later than that. Where a pack records `deferred_until`, reproduce it with a time before
+`deferred_until`, and at or after the latest window that had already closed if any claim in the pack
+was evaluated; where none was, nothing bounds it from below. Where a pack records no
 `deferred_until`, nothing was deferred, and any time after every claim in the bundle has closed
 produces the same records.
 
@@ -73,7 +75,7 @@ the digest refers to. The manifest covers the standard rulesets only.
 **It does not assess answer quality.** Every flag here is arithmetic over timestamps and state
 transitions: did the ticket reopen inside the ruleset's window, did the same requester come back, did
 a refund follow, was the requester a member of staff or a test account. Whether the agent's reply
-was any *good* is not evaluated, because substituting one model's judgement for another's would be
+was any *good* is not evaluated, because substituting one model's opinion for another's would be
 the same error this exists to point at.
 
 **It is not an audit.** It is a comparison against criteria fixed in advance.

@@ -31,7 +31,7 @@
 //! The derivation does the counting; the Judge does the checking. That division is what keeps a
 //! verdict re-checkable by anyone holding the public key.
 //!
-//! Nothing here assesses answer quality. Substituting our model's judgement for the vendor's would
+//! Nothing here assesses answer quality. Substituting our model's opinion for the vendor's would
 //! be the same error the product exists to point at.
 
 pub mod criteria;
