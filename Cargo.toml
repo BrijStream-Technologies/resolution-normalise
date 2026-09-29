@@ -1,6 +1,6 @@
 [package]
 name = "resolution-normalise"
-version = "0.5.0"
+version = "0.5.1"
 edition = "2021"
 description = "Derives billed-resolution claim records from vendor-neutral helpdesk records, so the party being measured can reproduce the measurement."
 repository = "https://github.com/BrijStream-Technologies/resolution-normalise"

@@ -155,6 +155,14 @@ pub struct Summary {
     /// `judge_key_hex: null` invites exactly the reading it should not.
     #[serde(rename = "unflagged")]
     pub verified: u64,
+    /// Claims something actually tested: `billed` less `unmatched`.
+    ///
+    /// An unmatched claim is in scope and is returned before any window or criterion is applied, so
+    /// it is counted in `billed` and evaluated against nothing. Carried rather than left to be
+    /// derived, because a period where this is zero and `billed` is not looks, in every figure
+    /// beside it, like a period that was evaluated.
+    #[serde(default)]
+    pub evaluated: u64,
     /// Claims that failed at least one criterion.
     pub exceptions: u64,
     /// Claims whose windows have not closed, and so nothing evaluated them.

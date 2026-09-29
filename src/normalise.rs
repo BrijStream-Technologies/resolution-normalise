@@ -280,6 +280,7 @@ pub fn summarise(outcomes: &[Outcome], rules: &Ruleset) -> Summary {
         match outcome {
             Outcome::Claim(record) => {
                 summary.billed = summary.billed.saturating_add(1);
+                summary.evaluated = summary.evaluated.saturating_add(1);
                 summary.billed_usd_micros = summary
                     .billed_usd_micros
                     .saturating_add(record.amount_usd_micros);
