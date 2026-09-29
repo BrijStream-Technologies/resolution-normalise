@@ -58,6 +58,11 @@ pub struct ClaimRecord {
     /// True when a human agent ever took the ticket, including after the invoice was issued.
     pub reached_human: bool,
     /// True when a refund, cancellation, chargeback or return followed inside the ruleset's window.
+    ///
+    /// Tested only against the downstream export supplied for the period. False therefore means no
+    /// matching event was *in that export*, which is not a finding that none occurred -- and where
+    /// no downstream export was supplied at all, this can never be true. Nothing in a claim record
+    /// distinguishes the two, so a document reporting this field has to say so.
     pub downstream_reversal: bool,
     /// Who was asking.
     pub requester_class: String,
@@ -172,10 +177,17 @@ pub struct Summary {
 }
 
 /// Format micros of USD as a plain decimal string, without floating point.
+///
+/// Rounded half-up, not truncated, for the reason the rate helpers beside it give: a file whose
+/// purpose is to be added up by the other side should not have its rows sum to less than its own
+/// total. Truncating drops up to a cent per row, and a dispute is lost more easily on a figure that
+/// does not foot than on the figure itself.
 #[must_use]
 pub fn usd(micros: u64) -> String {
-    let dollars = micros / 1_000_000;
-    let cents = (micros % 1_000_000) / 10_000;
+    // Half-up on the sub-cent remainder, in integers: no float ever touches an invoice.
+    let cents_total = micros.saturating_add(5_000) / 10_000;
+    let dollars = cents_total / 100;
+    let cents = cents_total % 100;
     format!("{dollars}.{cents:02}")
 }
 
@@ -185,4 +197,33 @@ pub fn parse_time(value: &str) -> Option<DateTime<Utc>> {
     DateTime::parse_from_rfc3339(value)
         .ok()
         .map(|t| t.with_timezone(&Utc))
+}
+
+#[cfg(test)]
+mod usd_tests {
+    use super::usd;
+
+    /// A file meant to be added up should foot.
+    ///
+    /// Truncation drops up to a cent per row, so a total computed in micros and printed once can
+    /// come out above the sum of the rows printed beside it — in the one document whose purpose is
+    /// for the other side to check the arithmetic.
+    #[test]
+    fn rows_sum_to_their_total() {
+        // Three claims a vendor priced in thirds of a cent.
+        let rows = [3_333_333_u64, 3_333_333, 3_333_334];
+        let total: u64 = rows.iter().sum();
+        assert_eq!(usd(total), "10.00");
+        for row in rows {
+            assert_eq!(usd(row), "3.33");
+        }
+    }
+
+    #[test]
+    fn the_half_cent_goes_up() {
+        assert_eq!(usd(1_005_000), "1.01");
+        assert_eq!(usd(1_004_999), "1.00");
+        assert_eq!(usd(990_000), "0.99");
+        assert_eq!(usd(0), "0.00");
+    }
 }
